@@ -1,5 +1,5 @@
 """""
-Author: Gabriel Rossier
+Author: Gabriel Rossier le fameux lécheur des deux sphères d'un mec
 Date: 2023-02-22
 Description: This is the main file of InternetSecureChat project.
 """""
