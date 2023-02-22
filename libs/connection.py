@@ -12,7 +12,6 @@ class connection:
             print("Connection failed !")
     
     def startListening(self):
-        test = threading.Thread()
         while self.connected:
             msg = self.sock.recvmsg(128)
             if(msg[0].decode("utf-8") != ""):
