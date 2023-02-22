@@ -3,21 +3,22 @@ Author: Gabriel Rossier le fameux lécheur des deux sphères d'un mec
 Date: 2023-02-22
 Description: This is the main file of InternetSecureChat project.
 """""
+import sys
+from modules.uiLoader import UILoader
+from PyQt6.QtWidgets import QApplication, QLabel,QListWidgetItem
 
-from PyQt6.QtGui import *
-from PyQt6.QtWidgets import *
-from PyQt6.QtCore import *
+app = UILoader.UILoader("ui/form.ui")
 
-class MainWindow(QMainWindow):
-    def __init__(self):
-        super().__init__()
-        self.setWindowTitle("InternetSecureChat")
-        self.setWindowIcon(QIcon("icon.ico"))
-        self.setGeometry(100, 100, 600, 400)
-        self.show()
+app.window.btnSend.clicked.connect(lambda:send())
+app.window.inptMessage.returnPressed.connect(lambda:send())
 
-app = QApplication([])
-window = MainWindow()
-window.show()
+def received(message):    
+    return
+    
+def send():
+    message = app.window.inptMessage.text()
+    app.window.listWidget.addItem("YOU > " + message)
+    app.window.inptMessage.setText("")
 
+app.show()
 app.exec()
