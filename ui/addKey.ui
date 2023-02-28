@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Key</string>
+   <string>Form</string>
   </property>
   <property name="styleSheet">
    <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(28, 28, 49, 255))</string>
@@ -20,9 +20,9 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>10</y>
+     <y>60</y>
      <width>381</width>
-     <height>231</height>
+     <height>171</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -55,7 +55,25 @@ border-width: thin;</string>
     <string/>
    </property>
    <property name="icon">
-    <iconset theme="media-floppy"/>
+    <iconset theme="media-floppy">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
+  </widget>
+  <widget class="QPlainTextEdit" name="txtKeyName">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>381</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(0, 0, 0, 98));
+color:white;</string>
+   </property>
+   <property name="placeholderText">
+    <string>Key name</string>
    </property>
   </widget>
  </widget>

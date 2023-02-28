@@ -20,16 +20,21 @@ def received(message):
 def send():
     message = app.window.inptMessage.text()
     if(message != ""):
-        app.window.listWidget.addItem("YOU > " + message)
+        addToMessageLog(message)
         app.window.inptMessage.setText("")
 
 def addKey():
-    keyWindow.window.btnSave.clicked.connect(lambda:savekey(keyWindow.window.txtkey.toPlainText()))
+    keyWindow.window.btnSave.clicked.connect(lambda:savekey(keyWindow.window.txtkey.toPlainText(),keyWindow.window.txtKeyName.toPlainText()))
     keyWindow.window.show()
 
-def savekey(key):
-    f = open("keys.txt", str(key))
+def savekey(key,name):
+    
+    with open('storedKey/'+name+'.key', 'w') as f:
+        f.write(key)
     return
+
+def addToMessageLog(message):
+    app.window.listWidget.addItem("YOU > " + message)
 
 app.show()
 sys.exit(app.exec())
