@@ -1,7 +1,15 @@
 import socket
 import threading
+from enum import Enum
 
-class connection:
+encoding = "utf8"
+decoding = encoding
+
+class MessageType(Enum):
+    TEXT = 1
+    IMAGE = 2
+
+class Connection:
     started = False
     thread = None
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -23,10 +31,34 @@ class connection:
         print("Starting listening...")
         while self.connected:
             msg = self.sock.recvmsg(128)
-            if(msg[0].decode("utf-8") != ""):
+            if(msg[0].decode(decoding) != ""):
                 print(msg)
 
-    def send(self, data:bytes):
-        print("Sending : " + data.decode("utf-8"))
-        self.sock.send(data)
+    def send(self, toSend:bytes or str, type:MessageType):
+        #Protocol is 'ISC'
+        # Then either i for image or t for text
+        #
+        # if t -> 'ISCt' + length on 2 bytes + message encoded in utf8
+        # if i -> 'ISCi' + (width <= 128) + (heigh <= 128) + pixels value in RGB
+        header = "ISC".encode(encoding)
+        data = None
+        if(type == MessageType.TEXT):
+            header += 't'.encode(encoding)
+
+            # Checking data size
+            if(data.__len__ > 99):
+                print("Please send a message smaller than 100 char")
+                return
+            
+            # Converting to byte if it's a string
+            if(toSend is str):
+                toSend = toSend.encode(encoding)
+
+            # Adding length to header
+            header += toSend.__len__().to_bytes(2, 'big')
+        elif (type == MessageType.IMAGE):
+            print("Not supported yet")
+            return
+        message = header + toSend
+        self.sock.send(message)
         
