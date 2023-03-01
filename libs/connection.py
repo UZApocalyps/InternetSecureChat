@@ -15,6 +15,7 @@ class Connection:
     recSock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     sendSock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     connected = False
+    callback = None
     def __init__(self, hostname:str, port:int):
         try:
             self.recSock.connect((hostname, port))
@@ -34,8 +35,11 @@ class Connection:
         while self.connected:
             msg = self.recSock.recvmsg(128)
             if(msg[0].decode(decoding) != ""):
-                print(msg)
+                self.callback(msg)
 
+    def setListeningCallback (self, callback):
+        self.callback = callback
+    
     def send(self, toSend:bytes or str, type:MessageType):
         #Protocol is 'ISC'
         # Then either i for image or t for text
