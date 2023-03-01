@@ -12,11 +12,13 @@ class MessageType(Enum):
 class Connection:
     started = False
     thread = None
-    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    recSock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    sendSock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     connected = False
     def __init__(self, hostname:str, port:int):
         try:
-            self.sock.connect((hostname, port))
+            self.recSock.connect((hostname, port))
+            self.sendSock.connect((hostname, port))
             self.connected = True
         except:
             print("Connection failed !")
@@ -30,7 +32,7 @@ class Connection:
     def __listeningFunction(self):
         print("Starting listening...")
         while self.connected:
-            msg = self.sock.recvmsg(128)
+            msg = self.recSock.recvmsg(128)
             if(msg[0].decode(decoding) != ""):
                 print(msg)
 
@@ -60,5 +62,5 @@ class Connection:
             print("Not supported yet")
             return
         message = header + toSend
-        self.sock.send(message)
+        self.sendSock.send(message)
         
