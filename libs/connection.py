@@ -14,6 +14,7 @@ class Connection:
     thread = None
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     connected = False
+    callback = None
     def __init__(self, hostname:str, port:int):
         try:
             self.sock.connect((hostname, port))
@@ -32,8 +33,11 @@ class Connection:
         while self.connected:
             msg = self.sock.recvmsg(128)
             if(msg[0].decode(decoding) != ""):
-                print(msg)
+                self.callback(msg)
 
+    def setListeningCallback (self, callback):
+        self.callback = callback
+    
     def send(self, toSend:bytes or str, type:MessageType):
         #Protocol is 'ISC'
         # Then either i for image or t for text
