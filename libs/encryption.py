@@ -1,3 +1,13 @@
+
+class Encrypt():
+    def formatString(data:str)->bytes:
+        final = ""
+        for c in data:
+            for x in range(4-len(c.encode("utf8"))):
+                final += '\0'
+            final += c
+        return final.encode("utf8")
+
 class OffsetEncrypt():
     offset=None
 
@@ -25,7 +35,3 @@ class OffsetEncrypt():
                 except ValueError:
                     print("Found char not in range with current offset")
         return finalText
-
-test = OffsetEncrypt(4)
-encr = test.encrypt("Aha ?")
-print(test.decrypt(encr))
