@@ -435,7 +435,7 @@
    </palette>
   </property>
   <property name="windowTitle">
-   <string>ISC</string>
+   <string>Widget</string>
   </property>
   <property name="autoFillBackground">
    <bool>false</bool>
@@ -448,7 +448,7 @@
     <rect>
      <x>70</x>
      <y>490</y>
-     <width>661</width>
+     <width>561</width>
      <height>41</height>
     </rect>
    </property>
@@ -463,7 +463,7 @@ color:white;</string>
   <widget class="QPushButton" name="btnSend">
    <property name="geometry">
     <rect>
-     <x>740</x>
+     <x>640</x>
      <y>490</y>
      <width>41</width>
      <height>41</height>
@@ -715,6 +715,32 @@ background-color:transparent;</string>
    </property>
    <property name="text">
     <string>OFFLINE</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="btnSendImage">
+   <property name="geometry">
+    <rect>
+     <x>690</x>
+     <y>490</y>
+     <width>41</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(30, 0, 255, 255), stop:1 rgba(145, 0, 255, 255));
+border:none;
+border-radius:10px;
+border-width: thin;</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="icon">
+    <iconset theme="camera-photo">
+     <normaloff>.</normaloff>.</iconset>
    </property>
   </widget>
  </widget>
