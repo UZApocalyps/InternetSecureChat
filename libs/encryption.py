@@ -72,9 +72,3 @@ class ComplexOffsetEncrypt:
             finalText += newChar
             keywordIndex += 1
         return finalText
-
-
-test = ComplexOffsetEncrypt("test")
-encr = test.encrypt("aha ?")
-print(encr)
-print(test.decrypt(encr))
