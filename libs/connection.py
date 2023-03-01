@@ -64,16 +64,15 @@ class Connection:
         data = None
 
         # Checking data size
-        if(toSend.__len__() > 99):
+        if(toSend.__len__() / 4 > 99):
             print("Please send a message smaller than 100 char")
             return
         
         # Converting to byte if it's a string
         if(toSend is str):
             toSend = toSend.encode(encoding)
-
         # Adding length to header
-        header += toSend.__len__().to_bytes(2, 'big')
+        header += int(toSend.__len__() / 4).to_bytes(2, 'big')
         message = header + toSend
         self.sock.send(message)
         

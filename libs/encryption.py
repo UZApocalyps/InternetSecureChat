@@ -1,22 +1,11 @@
 from enum import Enum
-
-class EncryptionTypes(Enum):
-    TEST1 = 1
+from abc import ABC, abstractmethod
 
 
-class Encryption:
-    encryptionType: EncryptionTypes = None
 
-    @classmethod
-    def encrypt(self, method:EncryptionTypes):
-        if(method.name == EncryptionTypes.TEST1):
-            print("Encrypthing with test1")
-        else:
-            print("Couldn't find a encryption matching with the requirements")
-
-    def __init__(self, method:EncryptionTypes):
-        self.encryptionType = method
-
-    def encrypt(self, data) -> bytes:
-        # Check type needed and encrypt with it
-        return data
+class Encrypt():
+    def formatString(self, data:str)->bytes:
+        final = ""
+        for c in data:
+            final += '   ' + c
+        return final.encode("utf8")
