@@ -1,3 +1,4 @@
-import encryption
+from encryption import OffsetEncrypt
 
-encryption.Encryption.test()
+encryptor = OffsetEncrypt(5)
+
